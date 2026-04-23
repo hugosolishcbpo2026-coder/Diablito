@@ -1,111 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diablito Smoke Shop</title>
-  <style>
-    :root {
-      --bg:#111;
-      --accent:#d00000;
-      --text:#eee;
-      --card:#222;
-      --highlight:#ff6600;
-    }
-    body {
-      margin:0;
-      font-family:"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-    header {
-      background:var(--accent);
-      padding:20px;
-      text-align:center;
-    }
-    header h1 {
-      margin:0;
-      font-size:2.5rem;
-      color:#fff;
-      text-shadow:0 0 10px #ff4444;
-    }
-    nav {
-      margin-top:10px;
-    }
-    nav a {
-      color:#fff;
-      margin:0 15px;
-      text-decoration:none;
-      font-weight:bold;
-    }
-    .hero {
-      text-align:center;
-      padding:60px 20px;
-      background:linear-gradient(135deg,var(--accent),var(--highlight));
-    }
-    .hero h2 {
-      font-size:2rem;
-      margin-bottom:20px;
-    }
-    .hero p {
-      max-width:600px;
-      margin:0 auto 20px;
-    }
-    .hero button {
-      background:#000;
-      color:#fff;
-      border:none;
-      padding:15px 30px;
-      font-size:1em;
-      cursor:pointer;
-    }
-    .products {
-      display:flex;
-      flex-wrap:wrap;
-      gap:20px;
-      justify-content:center;
-      padding:40px 20px;
-    }
-    .product-card {
-      background:var(--card);
-      border-radius:10px;
-      padding:20px;
-      width:250px;
-      text-align:center;
-      box-shadow:0 0 10px rgba(255,0,0,0.3);
-    }
-    .product-card img {
-      width:100%;
-      border-radius:8px;
-      margin-bottom:10px;
-    }
-    .product-card h3 {
-      margin:10px 0;
-      color:var(--highlight);
-    }
-    .product-card p {
-      margin:5px 0;
-    }
-    .product-card button {
-      background:var(--accent);
-      color:#fff;
-      border:none;
-      padding:10px 20px;
-      cursor:pointer;
-    }
-    footer {
-      background:#000;
-      color:#999;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diablito Smoke Shop</title>
+
+<style>
+:root {
+  --bg:#111;
+  --accent:#d00000;
+  --text:#eee;
+  --card:#222;
+  --highlight:#ff6600;
+}
+
+body {
+  margin:0;
+  font-family:"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* HEADER */
+header {
+  background:var(--accent);
+  padding:20px;
+  text-align:center;
+}
+header h1 {
+  margin:0;
+  font-size:2.5rem;
+}
+nav a {
+  color:#fff;
+  margin:0 15px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:60px 20px;
+  background:linear-gradient(135deg,var(--accent),var(--highlight));
+}
+.hero button {
+  background:#000;
+  color:#fff;
+  border:none;
+  padding:15px 30px;
+  cursor:pointer;
+}
+
+/* PRODUCTS */
+.products {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+  padding:40px 20px;
+}
+.product-card {
+  background:var(--card);
+  border-radius:10px;
+  padding:20px;
+  width:250px;
+  text-align:center;
+}
+.product-card img {
+  width:100%;
+  border-radius:8px;
+}
+.product-card button {
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:10px;
+  cursor:pointer;
+}
+
+/* CART */
+.cart {
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:#000;
+  padding:15px;
+  border-radius:10px;
+}
+.cart h4 {
+  margin:0 0 10px 0;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>Diablito Smoke Shop</h1>
+  <h1>🔥 Diablito Smoke Shop</h1>
   <nav>
     <a href="#products">Products</a>
     <a href="#about">About</a>
@@ -115,45 +107,84 @@
 
 <section class="hero">
   <h2>Premium Smoke & Accessories</h2>
-  <p>Discover unique products and exclusive deals at Diablito.</p>
-  <button>Shop Now</button>
+  <p>Unique products. Real quality. No bullshit.</p>
+  <button onclick="scrollToProducts()">Shop Now</button>
 </section>
 
+<!-- CART -->
+<div class="cart">
+  <h4>🛒 Cart</h4>
+  <div id="cart-items"></div>
+  <strong>Total: $<span id="total">0</span></strong>
+</div>
+
+<!-- PRODUCTS -->
 <section id="products" class="products">
-  <!-- Product placeholders -->
+
   <div class="product-card">
-    <img src="placeholder.jpg" alt="Product Image">
-    <h3>Product Name</h3>
-    <p>$[Price]</p>
-    <button>Add to Cart</button>
+    <img src="https://via.placeholder.com/250" alt="">
+    <h3>Glass Pipe</h3>
+    <p>$25</p>
+    <button onclick="addToCart('Glass Pipe',25)">Add to Cart</button>
   </div>
+
   <div class="product-card">
-    <img src="placeholder.jpg" alt="Product Image">
-    <h3>Product Name</h3>
-    <p>$[Price]</p>
-    <button>Add to Cart</button>
+    <img src="https://via.placeholder.com/250" alt="">
+    <h3>Rolling Papers</h3>
+    <p>$5</p>
+    <button onclick="addToCart('Rolling Papers',5)">Add to Cart</button>
   </div>
+
   <div class="product-card">
-    <img src="placeholder.jpg" alt="Product Image">
-    <h3>Product Name</h3>
-    <p>$[Price]</p>
-    <button>Add to Cart</button>
+    <img src="https://via.placeholder.com/250" alt="">
+    <h3>Grinder</h3>
+    <p>$15</p>
+    <button onclick="addToCart('Grinder',15)">Add to Cart</button>
   </div>
+
 </section>
 
-<section id="about" style="padding:40px 20px;text-align:center;">
-  <h2>About Diablito</h2>
-  <p>We are a Tijuana‑based smoke shop offering premium products, accessories, and a unique shopping experience.</p>
+<section id="about" style="text-align:center;padding:40px;">
+  <h2>About</h2>
+  <p>Tijuana-based smoke shop bringing premium gear and street culture together.</p>
 </section>
 
-<section id="contact" style="padding:40px 20px;text-align:center;">
-  <h2>Contact Us</h2>
-  <p>Email: info@diablito.com | Phone: (123) 456‑7890</p>
+<section id="contact" style="text-align:center;padding:40px;">
+  <h2>Contact</h2>
+  <p>Email: info@diablito.com</p>
 </section>
 
-<footer>
-  <p>&copy; 2026 Diablito Smoke Shop. All rights reserved.</p>
+<footer style="text-align:center;padding:20px;background:#000;">
+  <p>© 2026 Diablito Smoke Shop</p>
 </footer>
+
+<script>
+let cart = [];
+let total = 0;
+
+function scrollToProducts() {
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+
+function addToCart(name, price) {
+  cart.push({name, price});
+  total += price;
+  renderCart();
+}
+
+function renderCart() {
+  const cartItems = document.getElementById("cart-items");
+  cartItems.innerHTML = "";
+
+  cart.forEach(item => {
+    const div = document.createElement("div");
+    div.textContent = item.name + " - $" + item.price;
+    cartItems.appendChild(div);
+  });
+
+  document.getElementById("total").textContent = total;
+}
+</script>
 
 </body>
 </html>
